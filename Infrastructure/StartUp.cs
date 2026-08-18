@@ -3,6 +3,7 @@ using Infrastructure.Contexts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
 
 namespace Infrastructure
 {   
@@ -13,10 +14,20 @@ namespace Infrastructure
          this IServiceCollection services,
          IConfiguration config)
         {
+
+            // Get connection string and validate it exists
+            var connectionString = config.GetConnectionString("DefaultConnection");
+
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new InvalidOperationException(
+                    "Connection string 'DefaultConnection' not found in configuration.");
+            }
+
+
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(
-                    config.GetConnectionString("DefaultConnection"), builder =>
+                options.UseSqlServer(connectionString, builder =>
                     {
                         //remove underscore from migrations
                         builder.MigrationsHistoryTable("Migrations","EFCore");

@@ -22,3 +22,39 @@ services:
 volumes:
   sqlserver_data:
   redis_data:
+  
+  # ==========================================
+  # API SERVICE
+  # ==========================================
+  api:
+    build:
+      context: .
+      dockerfile: WebAPI/Dockerfile
+    container_name: property-management-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      # IMPORTANT: Use the container name for Docker-to-Docker communication
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=PropertyManagementDb;User Id=sa;Password=YourStrongPassword123!;TrustServerCertificate=True;MultipleActiveResultSets=true;
+      - ConnectionStrings__RedisConnection=redis:6379,password=,defaultDatabase=0
+    ports:
+      - "5000:80"
+      - "5001:443"  # Optional: HTTPS
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - web-api-network
+    restart: unless-stopped
+
+
+
+# ==========================================
+# NETWORKS
+# ==========================================
+networks:
+  motor-insurance-network:
+    driver: bridge
