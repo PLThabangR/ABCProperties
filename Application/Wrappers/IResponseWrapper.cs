@@ -16,7 +16,8 @@ namespace Application.Wrappers
     public interface IResponseWrapper<out T> : IResponseWrapper
     {   
 
-        //propety of type T read
+        //propety of type T 
         public T Data { get; }
+       
     }
 }
