@@ -1,3 +1,4 @@
+using Application;
 using Infrastructure;
 namespace WebAPI
 {
@@ -16,7 +17,9 @@ namespace WebAPI
 
             //This infrastucture services fro, infrastructure
             builder.Services.AddInfrastructureServices(builder.Configuration);
-
+            //We Rigster the application layer Servuces 
+            builder.Services.AddApplicationServices();
+            //We register
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

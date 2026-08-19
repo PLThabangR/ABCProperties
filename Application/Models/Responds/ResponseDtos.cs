@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Models.Responds
 {
-    public class ResponseDtos
-    {// Agent Response (without the navigation property to avoid circular references)
+  // Agent Response (without the navigation property to avoid circular references)
         public record AgentResponse(
             int Id,
             string FirstName,
@@ -43,5 +42,5 @@ namespace Application.Models.Responds
             string LastName,
             string PhoneNumber
         );
-    }
+    
 }
