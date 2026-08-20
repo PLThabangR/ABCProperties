@@ -1,4 +1,5 @@
 ﻿using Application.Models.Responds;
+using Mapster;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -21,28 +22,12 @@ namespace Application.feature.Properties.Queries.GetAllProperties
         public async Task<List<PropertyResponse>> Handle(GetAllPropertiesQuery request, CancellationToken cancellationToken)
         {
             // Get properties from database
-            var properties = await _propertyService.GetAllAsync();
+            var propertiesInDb = await _propertyService.GetAllAsync();
 
             // Convert entities to DTOs
-            return properties.Select(property =>
-                new PropertyResponse(
-                    property.Id,
-                    property.AgentId,
-                    property.ShortDecription,
-                    property.LongDescription,
-                    property.Price,
-                    property.ListindDate,
+           var propertyRes = propertiesInDb.Adapt<List<PropertyResponse>>();
 
-                    property.Agent == null
-                        ? null
-                        : new AgentSummaryResponse(
-                            property.Agent.Id,
-                            property.Agent.FirstName,
-                            property.Agent.LastName,
-                            property.Agent.PhoneNumber
-                        )
-                )
-            ).ToList();
+           return propertyRes;
         }
     }
 }

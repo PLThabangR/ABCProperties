@@ -30,7 +30,7 @@ namespace Infrastructure.Services
         }
 
         public async Task<int> DeleteAsync(int id)
-        {   //search for angent in the DB
+        {   //search for agent in the DB
            var agentInDB = await _context.Agents.FirstOrDefaultAsync(agent =>agent.Id == id);
 
             if(agentInDB != null)
