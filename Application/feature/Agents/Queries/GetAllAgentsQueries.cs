@@ -24,16 +24,19 @@ namespace Application.feature.Agents.Queries
         }
 
         public async Task<ResponseWrapper<List<AgentResponse>>> Handle(GetAllAgentsQueries request, CancellationToken cancellationToken)
-        {
+        {       //This will return a list 
             var agentInDb = await agentService.GetAllAsync();
 
-            if (agentInDb != null) {
-                return ResponseWrapper<List<AgentResponse>>.Fail("No agent were found");
-            }
-            //Convert this to list of agents dtos
-            var agentDTO = agentInDb.Adapt<List<AgentResponse>>();
+            if (agentInDb.Count >0) {
 
-            return ResponseWrapper<List<AgentResponse>>.Success(data: agentDTO);
+                //Convert this to list of agents dtos
+                var agentDTO = agentInDb.Adapt<List<AgentResponse>>();
+
+                return ResponseWrapper<List<AgentResponse>>.Success(data: agentDTO);
+               
+            }
+            return ResponseWrapper<List<AgentResponse>>.Fail("No agent were found");
+
         }
     }
 }

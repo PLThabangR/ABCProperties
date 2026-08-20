@@ -34,6 +34,12 @@ namespace Application.feature.Agents.Command
             var newUpdateAgent = request.Adapt<Agent>();
             //Use await since we will be communicationing with outside layers
             var updatedAgent = await agentService.UpdateAsync(newUpdateAgent);
+
+            if(updatedAgent == null)
+            {
+                return ResponseWrapper<AgentResponse>.Fail(message: "Failed to update agent");
+            }
+
             //Convert the entity back to DTO
             var updatedDto = updatedAgent.Adapt<AgentResponse>();
 

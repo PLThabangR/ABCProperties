@@ -32,7 +32,12 @@ namespace Application.feature.Agents.Command
             //Call service3 to do the Delete
             var agentID =await agentService.DeleteAsync(request.AgentId);
 
-            return ResponseWrapper<int>.Success(data:agentID,message:"Agent deleted successfully");
+            if(agentID > 0)
+            {
+                return ResponseWrapper<int>.Success(data: agentID, message: "Agent deleted successfully");
+            }
+
+            return ResponseWrapper<int>.Fail( message: "Agent not found");
         }
     }
 }
