@@ -14,6 +14,7 @@ namespace WebAPI.Controllers
         {
 
             //Use MediatR request pipeline to pass this new request to the Create Command
+            //We use this syntax becuase we using a class  not a record
             var response = await Sender.Send(new CreateAgentCommand { CreateAgent = createAgent });
 
             if (response.IsSuccess)
