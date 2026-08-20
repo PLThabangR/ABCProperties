@@ -18,9 +18,31 @@ namespace Application.feature.Properties.Queries.GetAllProperties
         {
             _propertyService = propertyService;
         }
-        public Task<List<PropertyResponse>> Handle(GetAllPropertiesQuery request, CancellationToken cancellationToken)
+        public async Task<List<PropertyResponse>> Handle(GetAllPropertiesQuery request, CancellationToken cancellationToken)
         {
-           
+            // Get properties from database
+            var properties = await _propertyService.GetAllAsync();
+
+            // Convert entities to DTOs
+            return properties.Select(property =>
+                new PropertyResponse(
+                    property.Id,
+                    property.AgentId,
+                    property.ShortDecription,
+                    property.LongDescription,
+                    property.Price,
+                    property.ListindDate,
+
+                    property.Agent == null
+                        ? null
+                        : new AgentSummaryResponse(
+                            property.Agent.Id,
+                            property.Agent.FirstName,
+                            property.Agent.LastName,
+                            property.Agent.PhoneNumber
+                        )
+                )
+            ).ToList();
         }
     }
 }
