@@ -19,7 +19,9 @@ namespace Infrastructure.Services
         }
 
         public async Task<int> CreateAsync(Agent newAgent)
-        {       //We are working with Agent DB
+        {
+            Console.WriteLine(newAgent);
+            //We are working with Agent DB
             await _context.Agents.AddAsync(newAgent);
             //Apply change to the dtabase
            await _context.SaveChangesAsync();

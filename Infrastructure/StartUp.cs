@@ -1,4 +1,5 @@
 ﻿using Application.feature.Agents;
+using Application.feature.Properties;
 using Infrastructure.Contexts;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +41,9 @@ namespace Infrastructure
 
             // Register AgentService with Dependency Injection
             services.AddScoped<IAgentService, AgentService>();
+
+                // Register PropertyService
+services.AddScoped<IPropertyService, PropertyService>();
 
             return services;
         }

@@ -28,8 +28,40 @@ namespace Application.feature.Agents.Command
         }
 
         public async Task<IResponseWrapper> Handle(CreateAgentCommand request, CancellationToken cancellationToken)
-        {    //Use Mapster to convert DTO to Agent Entity
-            var newAgent = request.Adapt<Agent>();
+        {    // Validate required fields
+             // Check if request itself is null
+            if (request == null || request.CreateAgent == null)
+            {
+                return ResponseWrapper<string>.Fail("Request data is missing");
+            }
+
+            // Validate required fields
+            if (string.IsNullOrWhiteSpace(request.CreateAgent.FirstName))
+            {
+                return ResponseWrapper<string>.Fail("FirstName is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(request.CreateAgent.LastName))
+            {
+                return ResponseWrapper<string>.Fail("LastName is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(request.CreateAgent.PhoneNumber))
+            {
+                return ResponseWrapper<string>.Fail("PhoneNumber is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(request.CreateAgent.Email))
+            {
+                return ResponseWrapper<string>.Fail("Email is required");
+            }
+
+
+
+
+
+            //Use Mapster to convert DTO to Agent Entity
+            var newAgent = request.CreateAgent.Adapt<Agent>();
             //Call the service so I will handle the creation in the Domain
             var agentId = await agentService.CreateAsync(newAgent);
 

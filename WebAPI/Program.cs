@@ -15,10 +15,12 @@ namespace WebAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            //This infrastucture services fro, infrastructure
+            //This infrastucture layer services from infrastructure
             builder.Services.AddInfrastructureServices(builder.Configuration);
-            //We Rigster the application layer Servuces 
+            //We Rigster the application layer Services 
             builder.Services.AddApplicationServices();
+
+
             //We register
             var app = builder.Build();
 
