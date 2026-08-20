@@ -13,6 +13,8 @@ namespace Application.feature.Agents.Command
     public class DeleteCommand:IRequest<IResponseWrapper>
     {
         public int AgentId { get; set; }
+
+        
     }
 
 
