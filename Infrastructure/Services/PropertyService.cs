@@ -17,6 +17,8 @@ namespace Infrastructure.Services
         // Create a new property
         public async Task<int> CreateAsync(Property newProperty)
         {
+            //Let time always be now set the property
+            newProperty.ListindDate = DateTime.UtcNow;
             // Add the property to EF Core
             await _context.Properties.AddAsync(newProperty);
 

@@ -9,7 +9,7 @@ namespace WebAPI.EndPoint
     { 
         public static RouteHandlerBuilder MapCreatePropertyEndPoint(this IEndpointRouteBuilder endpoint)
         {
-            return endpoint.MapPost("/add",async (CreateAgentRequest createProperty,ISender sender)=>{
+            return endpoint.MapPost("/add",async (CreateAgentRequest createProperty,ISender  sender)=>{
 
                     //We are using record instead of class
                 var property = await sender.Send(createProperty);
