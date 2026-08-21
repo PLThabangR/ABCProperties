@@ -55,8 +55,8 @@ services:
       - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=PropertyManagementDb;User Id=sa;Password=YourStrongPassword123!;TrustServerCertificate=True;MultipleActiveResultSets=true;
       - ConnectionStrings__RedisConnection=redis:6379,password=,defaultDatabase=0
     ports:
-      - "5000:80"
-      - "5001:443"
+      - "5000:8080"
+      - "5001:8081"
     depends_on:
       sqlserver:
         condition: service_healthy

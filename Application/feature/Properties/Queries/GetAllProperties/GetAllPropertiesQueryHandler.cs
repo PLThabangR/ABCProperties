@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.feature.Properties.Queries.GetAllProperties
 {
-    public class GetAllPropertiesQueryHandler : IRequestHandler<GetAllPropertiesQuery, List<PropertyResponse>
+    public class GetAllPropertiesQueryHandler : IRequestHandler<GetAllPropertiesQuery, List<PropertyResponse>>
       {
         //Enject the interfaces we need
         private readonly IPropertyService _propertyService;
