@@ -1,5 +1,5 @@
 
-# 🏢 Property Management API
+# 🏢 PropertyManagementAPI
 
 A production-oriented **Property Management REST API** built with **ASP.NET Core 8**, following **Clean Architecture** principles and modern .NET development practices.
 
@@ -605,7 +605,7 @@ Make sure you have installed:
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/property-management-api.git
+git clone https://github.com/PLThabangR/ABCProperties.git
 
 cd property-management-api
 ```
@@ -643,7 +643,8 @@ dotnet restore
 Apply migrations:
 
 ```bash
-dotnet ef database update
+Add-Migration InitialDbGen
+Database-Update
 ```
 
 Run the API:
@@ -742,7 +743,7 @@ Future improvements may include:
 
 # 👨‍💻 Author
 
-**Your Name**
+**Thabang Rakgoropo**
 
 Software Developer | .NET | C# | ASP.NET Core | SQL | Docker
 
@@ -760,11 +761,7 @@ If you find the project useful, consider giving it a ⭐.
 
 ```
 
-### One change I'd recommend for your GitHub profile
 
-Don't call it simply **"Property Management API"** if this is going to be one of your main portfolio projects. A stronger repository name would be:
-
-**`PropertyManagementAPI`**
 
 and your GitHub description could be:
 
