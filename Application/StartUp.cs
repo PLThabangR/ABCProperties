@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace Application
             return services.AddMediatR(config =>
             {
                 config.RegisterServicesFromAssembly(assembly);
-            });
+            }).AddValidatorsFromAssembly(assembly);//Add Validars to our DI container
         }
 
     }
